@@ -15,7 +15,7 @@
     <Copyright>Copyright 2009-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.</Copyright>
     <Product>AWS Lambda Tools for .NET CLI</Product>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-    <Version>3.1.4</Version>
+    <Version>3.1.5</Version>
   </PropertyGroup>
   <ItemGroup>
     <Content Include="Resources\build-lambda-zip.exe">
@@ -45,6 +45,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <NoWarn>1701;1702;1705;1591</NoWarn>
+    <AssemblyVersion>3.1.5.0</AssemblyVersion>
   </PropertyGroup>
 
   <!-- To rebuild build-lambda-zip.exe you must have Go installed and run 'dotnet msbuild -target:build-lambda-zip'-->

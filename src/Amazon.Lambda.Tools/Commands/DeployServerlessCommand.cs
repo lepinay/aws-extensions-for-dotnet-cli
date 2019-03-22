@@ -45,6 +45,7 @@ namespace Amazon.Lambda.Tools.Commands
             LambdaDefinedCommandOptions.ARGUMENT_CLOUDFORMATION_TEMPLATE_SUBSTITUTIONS,
             LambdaDefinedCommandOptions.ARGUMENT_CLOUDFORMATION_ROLE,
             LambdaDefinedCommandOptions.ARGUMENT_STACK_NAME,
+            LambdaDefinedCommandOptions.ARGUMENT_CHANGESET_NAME,
             LambdaDefinedCommandOptions.ARGUMENT_CLOUDFORMATION_DISABLE_CAPABILITIES,
             LambdaDefinedCommandOptions.ARGUMENT_FUNCTION_TAGS,
             LambdaDefinedCommandOptions.ARGUMENT_STACK_WAIT,
@@ -61,6 +62,7 @@ namespace Amazon.Lambda.Tools.Commands
 
         public string CloudFormationTemplate { get; set; }
         public string StackName { get; set; }
+        public string ChangeSetName { get; set; }
         public bool? WaitForStackToComplete { get; set; }
         public string CloudFormationRole { get; set; }
         public Dictionary<string, string> TemplateParameters { get; set; }
@@ -96,6 +98,8 @@ namespace Amazon.Lambda.Tools.Commands
                 this.S3Prefix = tuple.Item2.StringValue;
             if ((tuple = values.FindCommandOption(LambdaDefinedCommandOptions.ARGUMENT_STACK_NAME.Switch)) != null)
                 this.StackName = tuple.Item2.StringValue;
+            if ((tuple = values.FindCommandOption(LambdaDefinedCommandOptions.ARGUMENT_CHANGESET_NAME.Switch)) != null)
+                this.ChangeSetName = tuple.Item2.StringValue;
             if ((tuple = values.FindCommandOption(LambdaDefinedCommandOptions.ARGUMENT_CLOUDFORMATION_TEMPLATE.Switch)) != null)
                 this.CloudFormationTemplate = tuple.Item2.StringValue;
             if ((tuple = values.FindCommandOption(LambdaDefinedCommandOptions.ARGUMENT_STACK_WAIT.Switch)) != null)
@@ -175,7 +179,7 @@ namespace Amazon.Lambda.Tools.Commands
 
             var existingStack = await GetExistingStackAsync(stackName);
             this.Logger.WriteLine("Found existing stack: " + (existingStack != null));
-            var changeSetName = "Lambda-Tools-" + DateTime.Now.Ticks;
+            var changeSetName = this.GetStringValueOrDefault(this.ChangeSetName, LambdaDefinedCommandOptions.ARGUMENT_CHANGESET_NAME, false)?? "Lambda-Tools-" + DateTime.Now.Ticks; 
 
             List<Tag> tagList = null;
             {

@@ -155,6 +155,8 @@ namespace Amazon.Lambda.Tools
 
         public string StackName => GetValueAsString(LambdaDefinedCommandOptions.ARGUMENT_STACK_NAME);
 
+        public string ChangeSetName => GetValueAsString(LambdaDefinedCommandOptions.ARGUMENT_CHANGESET_NAME);
+
         public string S3Bucket => GetValueAsString(LambdaDefinedCommandOptions.ARGUMENT_S3_BUCKET);
 
         public string S3Prefix => GetValueAsString(LambdaDefinedCommandOptions.ARGUMENT_S3_PREFIX);

@@ -197,6 +197,15 @@ namespace Amazon.Lambda.Tools
                 ValueType = CommandOption.CommandOptionValueType.StringValue,
                 Description = "CloudFormation stack name for an AWS Serverless application"
             };
+        public static readonly CommandOption ARGUMENT_CHANGESET_NAME =
+            new CommandOption
+            {
+                Name = "CloudFormation ChangeSet Name",
+                ShortSwitch = "-csn",
+                Switch = "--changeset-name",
+                ValueType = CommandOption.CommandOptionValueType.StringValue,
+                Description = "Optional name for the changeset"
+            };
         public static readonly CommandOption ARGUMENT_CLOUDFORMATION_TEMPLATE =
             new CommandOption
             {
